@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,kBAAmB;EACjB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,SAAS,EAAE,IAAI",
+"sources": ["YoutubdResultList.scss"],
+"names": [],
+"file": "YoutubdResultList.css"
+}

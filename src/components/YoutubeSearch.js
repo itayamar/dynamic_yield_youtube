@@ -4,7 +4,7 @@ import './YoutubeSearch.css'
 
 const settings = require('../settings');
 
-const maxResults = 10;
+const maxResults = 50;
 const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${settings.youtube_api_key}&part=snippet&maxResults=${maxResults}&q=`;
 
 class YoutubeSearch extends Component {
@@ -25,11 +25,16 @@ class YoutubeSearch extends Component {
                     return response.json();
                 })
                 .then((searchResults) => {
-                    self.props.updateSearchResultsCb(searchResults);
+                    self.props.updateSearchResultsCb(searchResults.items);
                 });
         }, 500);
 
-        performSearchFun();
+        if(!inputValue) {
+            // do not search an empty string
+            self.props.updateSearchResultsCb([]);
+        }else{
+            performSearchFun();
+        }
     };
 
     render() {

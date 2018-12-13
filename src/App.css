@@ -1,13 +1,22 @@
 .App {
   text-align: center; }
-
-.App header {
-  min-height: 3em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2em;
-  background-color: #99b48b;
-  margin-bottom: 0.5em; }
+  .App header {
+    min-height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    background-color: #99b48b;
+    margin-bottom: 0.5em; }
+  .App .resultsContainer {
+    padding: 1em 0;
+    width: 80%;
+    margin: 0 auto; }
+  .App .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .App .youtubeSearchContainer {
+    min-width: 80%; }
 
 /*# sourceMappingURL=App.css.map */

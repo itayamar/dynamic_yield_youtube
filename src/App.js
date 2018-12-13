@@ -1,36 +1,44 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import YoutubeSearch from './components/YoutubeSearch'
+import YoutubeResultList from './components/YoutubeResultList';
+import SavedVideos from "./components/SavedVideos";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          searchResultVideos:[]
+            youtubeSearchResults: [],
+            savedVideos: localStorage.getItem('savedVideos') || []
         }
     }
 
     updateSearchResultsVideos = (searchResults) => {
-        console.log(JSON.stringify(searchResults));
+        // console.log(JSON.stringify(searchResults));
 
         this.setState({
-          searchResultVideos: searchResults
-      });
+            youtubeSearchResults: searchResults
+        });
     };
 
     render() {
-    return (
-      <div className="App">
+        return (
+            <div className="App">
 
-        <header>
-          Dynamic Yeild YouTube
-        </header>
+                <header>
+                    Dynamic Yeild YouTube
+                </header>
 
-        <YoutubeSearch updateSearchResultsCb={this.updateSearchResultsVideos}/>
-
-      </div>
-    );
-  }
+                <div className="search-container">
+                    <YoutubeSearch updateSearchResultsCb={this.updateSearchResultsVideos}/>
+                    <SavedVideos savedVideos={this.state.savedVideos}/>
+                </div>
+                <div className="resultsContainer">
+                    <YoutubeResultList searchResults={this.state.youtubeSearchResults}/>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;

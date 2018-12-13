@@ -1,0 +1,17 @@
+.savedVideos {
+  display: inline-block;
+  width: 3em;
+  margin: 0 0.5em;
+  position: relative; }
+  .savedVideos .saved-icon {
+    width: 100%; }
+  .savedVideos .saved-indicator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: bold;
+    padding: 0.2em; }
+
+/*# sourceMappingURL=SavedVideos.css.map */
