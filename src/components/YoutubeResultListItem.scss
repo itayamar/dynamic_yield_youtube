@@ -1,4 +1,13 @@
 .youtubeResultListItem {
   margin: 0.5em;
   width: 7em;
+  position: relative;
+  .watch-later-btn {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    .alarm-clock-img {
+      width: 2em;
+    }
+  }
 }

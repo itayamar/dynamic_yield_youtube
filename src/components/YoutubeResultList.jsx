@@ -8,13 +8,12 @@ class YoutubeResultList extends Component {
         super(props);
         this.state = {
 
-        }
+        };
     }
-
 
     render() {
         let listItemsElements = this.props.searchResults.map((item,index)=>{
-            return <YoutubeResultListItem searchResultItem={item} key={index}/>
+            return <YoutubeResultListItem searchResultItem={item} key={index} saveForLaterCb={this.props.saveForLaterCb}/>
         });
 
 
@@ -27,7 +26,8 @@ class YoutubeResultList extends Component {
 }
 
 YoutubeResultList.propTypes ={
-    searchResults: PropTypes.array
+    searchResults: PropTypes.array,
+    saveForLaterCb: PropTypes.func
 };
 
 export default YoutubeResultList;

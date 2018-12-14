@@ -1,5 +1,12 @@
 .youtubeResultListItem {
   margin: 0.5em;
-  width: 7em; }
+  width: 7em;
+  position: relative; }
+  .youtubeResultListItem .watch-later-btn {
+    position: absolute;
+    left: 0;
+    bottom: 0; }
+    .youtubeResultListItem .watch-later-btn .alarm-clock-img {
+      width: 2em; }
 
 /*# sourceMappingURL=YoutubeResultListItem.css.map */

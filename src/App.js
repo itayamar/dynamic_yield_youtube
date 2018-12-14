@@ -14,11 +14,23 @@ class App extends Component {
     }
 
     updateSearchResultsVideos = (searchResults) => {
-        // console.log(JSON.stringify(searchResults));
-
         this.setState({
-            youtubeSearchResults: searchResults
+            youtubeSearchResults: searchResults,
+            isSaveForLaterDialog: false
         });
+    };
+
+    handleSaveForLater = (videoItem)=>{
+        let savedVideos = this.state.savedVideos;
+        savedVideos.push(videoItem);
+        this.setState({savedVideos: savedVideos});
+        console.log(savedVideos);
+        this.toggleSaveForLaterDialog();
+    };
+
+
+    toggleSaveForLaterDialog = () => {
+        this.setState({isSaveForLaterDialog: !this.state.isSaveForLaterDialog});
     };
 
     render() {
@@ -34,7 +46,7 @@ class App extends Component {
                     <SavedVideos savedVideos={this.state.savedVideos}/>
                 </div>
                 <div className="resultsContainer">
-                    <YoutubeResultList searchResults={this.state.youtubeSearchResults}/>
+                    <YoutubeResultList searchResults={this.state.youtubeSearchResults} saveForLaterCb={this.handleSaveForLater}/>
                 </div>
             </div>
         );
