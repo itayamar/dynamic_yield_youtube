@@ -11,7 +11,8 @@
   .App .resultsContainer {
     padding: 1em 0;
     width: 80%;
-    margin: 0 auto; }
+    margin: 0 auto;
+    position: relative; }
   .App .search-container {
     display: flex;
     justify-content: center;

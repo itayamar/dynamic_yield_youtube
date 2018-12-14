@@ -3,12 +3,16 @@ import './App.css';
 import YoutubeSearch from './components/YoutubeSearch'
 import YoutubeResultList from './components/YoutubeResultList';
 import SavedVideos from "./components/SavedVideos";
+import YoutubePlayer from './components/YoutubePlayer';
+import SaveForLaterDialog from './components/SaveForLaterDialog'
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             youtubeSearchResults: [],
+            isVideoPlayerDisplayed: false,
+            isSaveForLaterDialog: false,
             savedVideos: localStorage.getItem('savedVideos') || []
         }
     }
@@ -33,6 +37,10 @@ class App extends Component {
         this.setState({isSaveForLaterDialog: !this.state.isSaveForLaterDialog});
     };
 
+    toggleVideoPlayer = ()=>{
+        this.setState({isVideoPlayerDisplayed: !this.state.isVideoPlayerDisplayed})
+    };
+
     render() {
         return (
             <div className="App">
@@ -47,7 +55,14 @@ class App extends Component {
                 </div>
                 <div className="resultsContainer">
                     <YoutubeResultList searchResults={this.state.youtubeSearchResults} saveForLaterCb={this.handleSaveForLater}/>
+                    {this.state.isVideoPlayerDisplayed ? <div className="video-player-container">
+                        <YoutubePlayer onClosePlayerCb={this.toggleVideoPlayer}/>
+                    </div>: '' }
+
+                    {this.state.isSaveForLaterDialog ? <SaveForLaterDialog closeCb={this.toggleSaveForLaterDialog}/> : ''}
                 </div>
+
+
             </div>
         );
     }

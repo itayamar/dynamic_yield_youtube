@@ -28,12 +28,15 @@ class YoutubeResultListItem extends Component {
             //do not display the watch later btn if already clicked / not hovered
             display: this.state.isWatchLaterDisplayed && !this.state.isWatchLaterToggled ? "block" : "none"
         };
+
+        let nowPlayingElem = <div className="now-playing">Playing</div>
     return (
         <div className="youtubeResultListItem" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
             <img src={this.props.searchResultItem.snippet.thumbnails.default.url}/>
             <div className="watch-later-btn" style={watchLaterBtnStyle}>
                 <img src={alarmClockIcon} className="alarm-clock-img" alt="save for later" onClick={this.handleSaveForLaterClick}/>
             </div>
+
         </div>
 );
   }

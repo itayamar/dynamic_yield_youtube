@@ -1,0 +1,39 @@
+.video-player {
+  position: absolute;
+  top: 2em;
+  left: 0;
+  right: 0;
+  .close-btn {
+    position: absolute;
+    top: 1vw;
+  }
+  .video-player-iframe {
+
+  }
+}
+
+@media screen and (min-width: 420px){
+  .video-player {
+    .close-btn {
+      right: 2vw;
+    }
+    .video-player-iframe {
+      width: 80vw;
+      height: 40vw;
+    }
+  }
+}
+
+@media screen and (min-width: 720px){
+  .video-player {
+    .close-btn {
+      position: absolute;
+      right: 11vw;
+      top: 1vw;
+    }
+    .video-player-iframe {
+      width: 60vw;
+      height: 25vw;
+    }
+  }
+}
