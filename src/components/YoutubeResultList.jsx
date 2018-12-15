@@ -13,7 +13,6 @@ class YoutubeResultList extends Component {
 
     render() {
         let listItemsElements = this.props.searchResults.map((item,index)=>{
-            console.log(this.props.savedForLaterVideos);
             let isSavedForLater = !!this.props.savedForLaterVideos.filter((videoItem)=>{return videoItem.id.videoId === item.id.videoId}).length;
             let isCurrentlyPlaying = this.props.currencyPlaying && this.props.currencyPlaying.id && item.id.videoId === this.props.currencyPlaying.id.videoId;
             return <YoutubeResultListItem searchResultItem={item} key={index}

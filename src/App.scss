@@ -10,23 +10,44 @@
     background-color: #99b48b;
     margin-bottom: 0.5em;
   }
-  .resultsContainer {
-    padding: 1em 0;
-    width: 80%;
-    margin: 0 auto;
-    position: relative;
 
-  }
 
-  .search-container {
+  .search-saved-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    .youtubeSearchContainer {
+      min-width: 80%;
+    }
   }
 
-  .youtubeSearchContainer {
-    min-width: 80%;
+  .videos-container {
+    position: relative;
+    .resultsContainer {
+      padding: 1em 0;
+      width: 80%;
+      margin: 0 auto;
+      position: relative;
+      .save-for-later-dialog-container{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+    }
   }
 
+  .saved-videos-container {
+    margin: 1em auto 0;
+  }
+}
 
+@media screen and (min-width: 720px){
+  .App {
+    .saved-videos-container {
+      width: 60%;
+    }
+  }
 }

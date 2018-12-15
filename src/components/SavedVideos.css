@@ -2,7 +2,8 @@
   display: inline-block;
   width: 3em;
   margin: 0 0.5em;
-  position: relative; }
+  position: relative;
+  cursor: pointer; }
   .savedVideos .saved-icon {
     width: 100%; }
   .savedVideos .saved-indicator {

@@ -16,7 +16,7 @@
 @media screen and (min-width: 720px) {
   .video-player .close-btn {
     position: absolute;
-    right: 9.8vw;
+    right: 20%;
     top: 0.2vw; }
   .video-player .video-player-iframe {
     width: 60vw;

@@ -17,7 +17,8 @@ class YoutubeSearch extends Component {
         let self= this;
         let inputValue = e.target.value;
         let querySearchUrl = searchUrl + inputValue;
-        self.setState({value: inputValue});
+
+        self.props.updateQueryCb(inputValue);
 
         let performSearchFun = debounce(()=> {
             fetch(querySearchUrl)
@@ -40,14 +41,16 @@ class YoutubeSearch extends Component {
     render() {
         return (
             <div className="youtubeSearchContainer">
-                <input className="youtubeSearch" type="text" value={this.state.value}  onChange={this.search}/>
+                <input className="youtubeSearch" type="text" value={this.props.query}  onChange={this.search}/>
             </div>
         );
     }
 }
 
 YoutubeSearch.propTypes ={
-    updateSearchResultsCb: PropTypes.func
+    updateSearchResultsCb: PropTypes.func,
+    query: PropTypes.string,
+    updateQueryCb: PropTypes.func
 };
 
 export default YoutubeSearch;

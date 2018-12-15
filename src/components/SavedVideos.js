@@ -8,7 +8,7 @@ import YoutubeSearch from "./YoutubeSearch";
 class SavedVideos extends Component {
 render() {
     return (
-      <div className="savedVideos">
+      <div className="savedVideos" onClick={this.props.onClickCb}>
           <img className="saved-icon" src={saveIcon} alt="saved videos"/>
           <span className="saved-indicator">{this.props.savedVideos.length}</span>
       </div>
@@ -17,7 +17,8 @@ render() {
 }
 
 YoutubeSearch.propTypes ={
-    savedVideos: PropTypes.array
+    savedVideos: PropTypes.array,
+    onClickCb: PropTypes.func
 };
 
 export default SavedVideos;

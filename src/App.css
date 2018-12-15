@@ -8,16 +8,30 @@
     font-size: 2em;
     background-color: #99b48b;
     margin-bottom: 0.5em; }
-  .App .resultsContainer {
-    padding: 1em 0;
-    width: 80%;
-    margin: 0 auto;
-    position: relative; }
-  .App .search-container {
+  .App .search-saved-container {
     display: flex;
     justify-content: center;
     align-items: center; }
-  .App .youtubeSearchContainer {
-    min-width: 80%; }
+    .App .search-saved-container .youtubeSearchContainer {
+      min-width: 80%; }
+  .App .videos-container {
+    position: relative; }
+    .App .videos-container .resultsContainer {
+      padding: 1em 0;
+      width: 80%;
+      margin: 0 auto;
+      position: relative; }
+      .App .videos-container .resultsContainer .save-for-later-dialog-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; }
+  .App .saved-videos-container {
+    margin: 1em auto 0; }
+
+@media screen and (min-width: 720px) {
+  .App .saved-videos-container {
+    width: 60%; } }
 
 /*# sourceMappingURL=App.css.map */
