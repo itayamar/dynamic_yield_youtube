@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,cAAe;EACX,SAAS,EAAE,KAAK;EAChB,OAAO,EAAE,GAAG;EACZ,KAAK,EAAE,GAAG",
+"sources": ["YoutubeSearch.scss"],
+"names": [],
+"file": "YoutubeSearch.css"
+}
