@@ -2,12 +2,29 @@
   margin: 0.5em;
   width: 7em;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    border: 2px solid yellow;
+  }
+  .video-thumbnail {
+    width: 100%;
+  }
   .watch-later-btn {
     position: absolute;
     left: 0;
-    bottom: 0;
+    top: 0;
     .alarm-clock-img {
       width: 2em;
     }
+  }
+  .now-playing {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: aquamarine;
   }
 }

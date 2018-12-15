@@ -7,9 +7,7 @@ class YoutubeResultListItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isWatchLaterDisplayed: false,
-            isWatchLaterToggled: false,
-            isCurrentlyPlaying: false
+            isWatchLaterDisplayed: false
         };
     }
 
@@ -17,26 +15,31 @@ class YoutubeResultListItem extends Component {
         this.setState({isWatchLaterDisplayed: !this.state.isWatchLaterDisplayed})
     };
 
-    handleSaveForLaterClick = () =>{
-        if(this.state.isWatchLaterToggled) return;
-        this.setState({isWatchLaterToggled: !this.state.isWatchLaterToggled});
+    handleSaveForLaterClick = (e) =>{
+        if(this.state.isSaved) return;
+        this.setState({isSaved: !this.state.isSaved});
         this.props.saveForLaterCb(this.props.searchResultItem);
+        e.stopPropagation();
+    };
+
+    handleClick = () =>{
+        this.props.playVideoCb(this.props.searchResultItem);
     };
 
     render() {
         let watchLaterBtnStyle = {
             //do not display the watch later btn if already clicked / not hovered
-            display: this.state.isWatchLaterDisplayed && !this.state.isWatchLaterToggled ? "block" : "none"
+            display: this.state.isWatchLaterDisplayed && !this.props.isSaved ? "block" : "none"
         };
 
-        let nowPlayingElem = <div className="now-playing">Playing</div>
+        let nowPlayingElem = this.props.isPlaying ? <div className="now-playing">Playing</div> : '';
     return (
-        <div className="youtubeResultListItem" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
-            <img src={this.props.searchResultItem.snippet.thumbnails.default.url}/>
+        <div className="youtubeResultListItem" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} onClick={this.handleClick}>
+            <img className="video-thumbnail" src={this.props.searchResultItem.snippet.thumbnails.default.url}/>
             <div className="watch-later-btn" style={watchLaterBtnStyle}>
                 <img src={alarmClockIcon} className="alarm-clock-img" alt="save for later" onClick={this.handleSaveForLaterClick}/>
             </div>
-
+            {nowPlayingElem}
         </div>
 );
   }
@@ -44,7 +47,10 @@ class YoutubeResultListItem extends Component {
 
 YoutubeResultListItem.propTypes ={
     searchResultItem: PropTypes.object,
-    saveForLaterCb: PropTypes.func
+    saveForLaterCb: PropTypes.func,
+    playVideoCb: PropTypes.func,
+    isPlaying: PropTypes.bool,
+    isSaved: PropTypes.bool
 };
 
 export default YoutubeResultListItem;

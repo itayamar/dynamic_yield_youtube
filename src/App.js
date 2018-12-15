@@ -9,26 +9,32 @@ import SaveForLaterDialog from './components/SaveForLaterDialog'
 class App extends Component {
     constructor(props) {
         super(props);
+        let savedVideos = localStorage.getItem('savedVideos');
+        savedVideos = savedVideos ? JSON.parse(savedVideos) : [];
         this.state = {
-            youtubeSearchResults: [],
+            youtubeVideosSearchResults: [],
             isVideoPlayerDisplayed: false,
             isSaveForLaterDialog: false,
-            savedVideos: localStorage.getItem('savedVideos') || []
+            savedVideos: savedVideos,
+            currentlyPlayingVideo: null
         }
     }
 
     updateSearchResultsVideos = (searchResults) => {
         this.setState({
-            youtubeSearchResults: searchResults,
+            youtubeVideosSearchResults: searchResults.filter((searchItem)=>{
+                return searchItem.id.kind === 'youtube#video';
+            }),
             isSaveForLaterDialog: false
         });
     };
 
     handleSaveForLater = (videoItem)=>{
         let savedVideos = this.state.savedVideos;
+        if(savedVideos.filter((item)=>{return item.id.videoId === videoItem.id.videoId}).length) return;
         savedVideos.push(videoItem);
         this.setState({savedVideos: savedVideos});
-        console.log(savedVideos);
+        localStorage.setItem('savedVideos', JSON.stringify(savedVideos));
         this.toggleSaveForLaterDialog();
     };
 
@@ -37,8 +43,11 @@ class App extends Component {
         this.setState({isSaveForLaterDialog: !this.state.isSaveForLaterDialog});
     };
 
-    toggleVideoPlayer = ()=>{
-        this.setState({isVideoPlayerDisplayed: !this.state.isVideoPlayerDisplayed})
+    toggleVideoPlayer = (videoItem)=>{
+        let isVideoPlayerDisplayed = !!videoItem;
+        videoItem = isVideoPlayerDisplayed ? videoItem : null;
+        this.setState({currentlyPlayingVideo: videoItem, isVideoPlayerDisplayed: isVideoPlayerDisplayed});
+        console.log('isVideoPlayerDisplayed', isVideoPlayerDisplayed, 'videoItem', videoItem);
     };
 
     render() {
@@ -54,9 +63,13 @@ class App extends Component {
                     <SavedVideos savedVideos={this.state.savedVideos}/>
                 </div>
                 <div className="resultsContainer">
-                    <YoutubeResultList searchResults={this.state.youtubeSearchResults} saveForLaterCb={this.handleSaveForLater}/>
-                    {this.state.isVideoPlayerDisplayed ? <div className="video-player-container">
-                        <YoutubePlayer onClosePlayerCb={this.toggleVideoPlayer}/>
+                    <YoutubeResultList searchResults={this.state.youtubeVideosSearchResults}
+                                       savedForLaterVideos={this.state.savedVideos}
+                                       currencyPlaying={this.state.currentlyPlayingVideo}
+                                       saveForLaterCb={this.handleSaveForLater} playVideoCb={this.toggleVideoPlayer}/>
+                    {this.state.isVideoPlayerDisplayed && this.state.currentlyPlayingVideo ? <div className="video-player-container">
+                        <YoutubePlayer onClosePlayerCb={this.toggleVideoPlayer}
+                                       videoId={this.state.currentlyPlayingVideo && this.state.currentlyPlayingVideo.id ? this.state.currentlyPlayingVideo.id.videoId: this.state.currentlyPlayingVideo}/>
                     </div>: '' }
 
                     {this.state.isSaveForLaterDialog ? <SaveForLaterDialog closeCb={this.toggleSaveForLaterDialog}/> : ''}
